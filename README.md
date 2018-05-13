@@ -37,3 +37,42 @@ synchronization-wise: the manner in which an IEEE 802.1AS bridge transports sync
 performance requirement, Annex B of [2]:
 - synchronization over seven or fewer hops to within 1us peak-to-peak of each other during steady-state operation,B.3 of [2]
 - jitter and wander defined in B.4 of [2], page 250
+
+IEEE 802.1Qat: Stream Reservation Protocol (SRP):
+it utilizes three signaling protocols, MMRP, MVRP and MSRP to establish stream reservations (register stream and reserve resources) across a bridged network between two end stations (talker and listener)
+- Talkers (source) initiates stream by sending an SRP talker advertise message which include:
+ - Stream ID (source MAC, talker-specific unique ID and destination MAC)
+ - QoS requirements (e.g., AVB traffic class and data rate information),
+ - accumulated worst case latency (recalculated at each bridge)
+- Listener (destination) acknowledges by replaying with listener ready message
+the signaling protocols:
+- Multiple MAC Registration Protocol (MMRP) is optionally used to control the propagation of the Talker's registrations throughout the bridged network (clause 10.9 of [1])
+- Multiple VLAN Registratin Protocol (MVRP) - used by end stations and bridges to declare membership in a VLAN where a stream is being sourced (clause 11 of [1])
+- Multiple Stream Registration Protocol (MSRP) - a signaling protocol that provides end stations (talker and listener) with the ability to reserve network resources (ensure Quality of Service), between end stations (clause 35.1 of [1])
+stream can be de-registered by either Talker or Listener
+references [1]
+
+IEEE 802.1Qav: Forwarding and Queuing for Time-Sensitive Streams (FQTSS)
+- it defines constraints for mapping of priorities into traffic classes
+ - AVB traffic is transmitted/forwarded using credit-based shaper algorithm
+ - AVB traffic has higher priority then traffic supporting strict priority, or other transmission algorithm (e.g. non-AVB traffic)
+- it specifies credit-based shaper algorithm
+ - frames distributed evenly in time (only on an aggregate class basis), prevents "bunching" of frames
+ - effect of smoothing out the devliery times
+- references: [1]
+
+IEEE 802.1BA: Audio Video Bridging Systems
+- specifies the default configuration of AVB devices in a network
+- for Ethernet, the method specified by 802.1BA to determine if its peer is AVB-capable is a combination of 802.3 link capabilities (determined during Ethernet link establishment) and the link delay measurements done by IEEE 802.1AS
+
+Second generation
+----------------
+The AVB Gen2 is developed to further enhance AVB's performance. The requirements for AVB Gen2 are defined not only by Audio/Video industry but others as well (described below). In order to meet the requirements, the mechanisms defined in AVB Gen 1 are improved and new solutions are investigated. 
+Improvements to AVB Gen 1:
+- P802.1ASbt: Timing and Synchronization for Time-Sensitive Applications
+- P802.1Qbv : Enhancements for Scheduled Traffic
+
+New ideas:
+- P802.1Qbu : Frame Preemption
+- Static/dynamic redundancy (potentially included into AVB Gen2)
+
