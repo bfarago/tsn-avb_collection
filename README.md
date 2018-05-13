@@ -13,11 +13,11 @@ This repo collects documentations and examples for TSN/AVB studies.
 
 [Packet capture examples](pcap_examples/)
 
-First generation
-----------------
+## First generation
+
 The Audio Video Bridging technology defines mechanisms (IEEE 802.1BA) which allows to recognizes all the AVB-compatible devices in the network. Basically, AVB works only within a domain of directly connected AVB-compatible network devices (i.e. bridges or endpoints). These devices support precise synchronization (IEEE 802.1AS) and enable reservation of their resources (IEEE 802.1Qat) for a data stream. This way, and using special traffic shaping (IEEE 802.1Qav), deterministic and low latency communication (stream) between AVB-compatible endpoints though AVB-compatible network is achieved.
 
-IEEE 802.1AS:
+### IEEE 802.1AS:
 Timing and Synchronization for Time-Sensitive Applications (gPTP): very tightly-constrained subset of PTP (which, except for Ethernet, supports wireless and Coordinated Shared Networks)
 it is based on, and includes a profile of, PTP (i.e. IEEE 1588-2008)
 
@@ -38,7 +38,7 @@ performance requirement, Annex B of [2]:
 - synchronization over seven or fewer hops to within 1us peak-to-peak of each other during steady-state operation,B.3 of [2]
 - jitter and wander defined in B.4 of [2], page 250
 
-IEEE 802.1Qat: Stream Reservation Protocol (SRP):
+### IEEE 802.1Qat: Stream Reservation Protocol (SRP):
 it utilizes three signaling protocols, MMRP, MVRP and MSRP to establish stream reservations (register stream and reserve resources) across a bridged network between two end stations (talker and listener)
 - Talkers (source) initiates stream by sending an SRP talker advertise message which include:
  - Stream ID (source MAC, talker-specific unique ID and destination MAC)
@@ -52,7 +52,7 @@ the signaling protocols:
 stream can be de-registered by either Talker or Listener
 references [1]
 
-IEEE 802.1Qav: Forwarding and Queuing for Time-Sensitive Streams (FQTSS)
+### IEEE 802.1Qav: Forwarding and Queuing for Time-Sensitive Streams (FQTSS)
 - it defines constraints for mapping of priorities into traffic classes
  - AVB traffic is transmitted/forwarded using credit-based shaper algorithm
  - AVB traffic has higher priority then traffic supporting strict priority, or other transmission algorithm (e.g. non-AVB traffic)
@@ -61,12 +61,12 @@ IEEE 802.1Qav: Forwarding and Queuing for Time-Sensitive Streams (FQTSS)
  - effect of smoothing out the devliery times
 - references: [1]
 
-IEEE 802.1BA: Audio Video Bridging Systems
+### IEEE 802.1BA: Audio Video Bridging Systems
 - specifies the default configuration of AVB devices in a network
 - for Ethernet, the method specified by 802.1BA to determine if its peer is AVB-capable is a combination of 802.3 link capabilities (determined during Ethernet link establishment) and the link delay measurements done by IEEE 802.1AS
 
-Second generation
-----------------
+## Second generation
+
 The AVB Gen2 is developed to further enhance AVB's performance. The requirements for AVB Gen2 are defined not only by Audio/Video industry but others as well (described below). In order to meet the requirements, the mechanisms defined in AVB Gen 1 are improved and new solutions are investigated. 
 Improvements to AVB Gen 1:
 - P802.1ASbt: Timing and Synchronization for Time-Sensitive Applications
@@ -75,4 +75,31 @@ Improvements to AVB Gen 1:
 New ideas:
 - P802.1Qbu : Frame Preemption
 - Static/dynamic redundancy (potentially included into AVB Gen2)
+
+## Requirements for AVB Gen 2
+
+Network reliability:
+- support of quick (must be predictable and pre-calculable) network recovery (<100ms Toyota, page 6) and seamless redundancy with zero time recovery (General Motors), this includes
+-- communication
+-- synchronization (802.1AS)
+ - reservation of stream (802.1Qat)
+- support of fault isolation/fault tolerance (e.g.: "babbling idiot" and "fault tolerant clock sync", General Motors, pages 36)
+- any mechanism that supports reliability must not break predictability/determinism/low latency
+Ultra-low latency for critical traffic
+- Toyota (page 2)
+ - maximum latency: 100us over 5 AVB bridge hops @ 100Mb or 1Gbps
+ - guaranteed and topology independent latency
+ - main network characteristics: max 32 devices (switches+nodes), links of 24m, max network span: 30m
+ - traffic characteristics: "control data" size (payload): ~256 bytes, max of 32 "control streams" sent every 500us, "normal data" size (payload): ~1500 bytes
+- Siemens (page 14)
+ - max latency / hop < 3us
+ - topology (quite) independent latency (required topology support: Daisy Chain / Comb / Ring)
+ - main network characteristics: max 512 devices, max hps: 64
+ - traffic characteristics: "control data" size (payload): typical 10-300 bytes, more possible, max of 4096 streams sent every 31.25us-1ms
+- Marvell (page 2)
+ - max latency / hop < 5us or <15us
+ - topology: Daisy Chain
+ - main network characteristics, max hps: 64
+ - traffic characteristics: "control data" size (payload): typical <300 bytes, small burst of frames at known regular intervals (e.g. a 40us long burst every 125 us)
+new AVB Gen2 features should be optional General Motors, pages 43)
 
