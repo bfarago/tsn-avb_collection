@@ -9,6 +9,8 @@ Atheros AR8031 PHY  (1588v2 ready) 802.3-100BaseT (1000Mbps over four twisted-pa
 Broadcom BCM89810 PHY  (1588v2 ready) 802.3-100BaseT1  (100Mbps over one twisted-pair)
 [overview](IEEE1588_Phy_BroadR-89810-PB00-R.pdf)
 
+Texas DP83630 PHY [datasheet](datasheet_TI_Phy_dp83630.pdf)
+
 APPLE
 -----
 
