@@ -80,26 +80,26 @@ New ideas:
 
 Network reliability:
 - support of quick (must be predictable and pre-calculable) network recovery (<100ms Toyota, page 6) and seamless redundancy with zero time recovery (General Motors), this includes
--- communication
--- synchronization (802.1AS)
- - reservation of stream (802.1Qat)
+  - communication
+  - synchronization (802.1AS)
+  - reservation of stream (802.1Qat)
 - support of fault isolation/fault tolerance (e.g.: "babbling idiot" and "fault tolerant clock sync", General Motors, pages 36)
 - any mechanism that supports reliability must not break predictability/determinism/low latency
 Ultra-low latency for critical traffic
 - Toyota (page 2)
- - maximum latency: 100us over 5 AVB bridge hops @ 100Mb or 1Gbps
- - guaranteed and topology independent latency
- - main network characteristics: max 32 devices (switches+nodes), links of 24m, max network span: 30m
- - traffic characteristics: "control data" size (payload): ~256 bytes, max of 32 "control streams" sent every 500us, "normal data" size (payload): ~1500 bytes
+  - guaranteed and topology independent latency
+  - main network characteristics: max 32 devices (switches+nodes), links of 24m, max network span: 30m
+  - maximum latency: 100us over 5 AVB bridge hops @ 100Mb or 1Gbps
+  - traffic characteristics: "control data" size (payload): ~256 bytes, max of 32 "control streams" sent every 500us, "normal data" size (payload): ~1500 bytes
 - Siemens (page 14)
- - max latency / hop < 3us
- - topology (quite) independent latency (required topology support: Daisy Chain / Comb / Ring)
- - main network characteristics: max 512 devices, max hps: 64
- - traffic characteristics: "control data" size (payload): typical 10-300 bytes, more possible, max of 4096 streams sent every 31.25us-1ms
+  - max latency / hop < 3us
+  - topology (quite) independent latency (required topology support: Daisy Chain / Comb / Ring)
+  - main network characteristics: max 512 devices, max hps: 64
+  - traffic characteristics: "control data" size (payload): typical 10-300 bytes, more possible, max of 4096 streams sent every 31.25us-1ms
 - Marvell (page 2)
- - max latency / hop < 5us or <15us
- - topology: Daisy Chain
- - main network characteristics, max hps: 64
- - traffic characteristics: "control data" size (payload): typical <300 bytes, small burst of frames at known regular intervals (e.g. a 40us long burst every 125 us)
+  - max latency / hop < 5us or <15us
+  - topology: Daisy Chain
+  - main network characteristics, max hps: 64
+  - traffic characteristics: "control data" size (payload): typical <300 bytes, small burst of frames at known regular intervals (e.g. a 40us long burst every 125 us)
 new AVB Gen2 features should be optional General Motors, pages 43)
 
