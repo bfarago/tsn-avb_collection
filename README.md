@@ -1,14 +1,14 @@
 # TSN/AVB document collection
-This repo collectes documentations and examples for TSN/AVB studies.
+This repo collects documentations and examples for TSN/AVB studies.
 
-[general docs](doc/)
+[General docs](doc/)
 
 [Application notes](doc_an/)
 
-[hw docs](doc_hw/)
+[Hardware docs](doc_hw/)
 
-[hw description](doc_hw/hw.md)
+[MAC+Phy HW descriptions](doc_hw/hw.md)
 
-[Phy hw description](doc_hw/phy.md)
+[Phy hw descriptions](doc_hw/phy.md)
 
 [Packet capture examples](pcap_examples/)
