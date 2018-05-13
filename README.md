@@ -5,7 +5,7 @@ This repo collectes documentations and examples for TSN/AVB studies.
 
 [Application notes](doc_an/)
 
-[hw docs](doc/)
+[hw docs](doc_hw/)
 
 [hw description](doc_hw/hw.md)
 
